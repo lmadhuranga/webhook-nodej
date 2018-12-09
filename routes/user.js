@@ -8,6 +8,7 @@ var user_controller = require('../controllers/user');
 // a simple test url to check that all of our files are communicating correctly.
 
 router.post('/subscribe', user_controller.userSubscribe);
+router.get('/all', user_controller.notityAll);
 
 
 module.exports = router;

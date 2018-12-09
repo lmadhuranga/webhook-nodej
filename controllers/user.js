@@ -1,26 +1,37 @@
 var userm = require('../models/user');
 var socketMVC = require('socket.mvc');
 var moment = require('moment-timezone');
-
+const { Notify } = require('../utils')
 
 //Simple version, without validation or sanitation
 exports.userSubscribe =  function (req, res) {
+ 
     const rowData = req.body;
-    //db.collection.findOne({}).sort({ "_id":-1})
-    userm.findOne({'endpoint': rowData.endpoint}, (err, details)=>{
+    // return console.log('rowData',rowData); 
+
+    userm.findOne({'cookie': rowData.cookie}, (err, details)=>{
         // console.user('init_users ',usersData);
         if (err){
-            console.user(err);
+            console.log(err);
             return;
         }
-        if(!usersData) {
+        if(!details) {
+            console.log('Registering new usre');
             const user = new userm(rowData);
-            user.save(function (err, users) {
-                console.user('users',users);
+            user.save(function (err, user) {
+                // console.log('registered new user',user);
                 if (err) {
-                    console.user(err);
+                    console.log(err);
                 }
                 res.json({'msg':'User subscribed successfully'});
+            });
+        }
+        else {
+            userm.findOneAndUpdate(details._id, {$set: rowData}, function (err, user) {
+                if (err) {
+                    console.log(err);
+                }
+                res.send('user udpated.');
             });
         }
     }).sort({"_id":-1});
@@ -35,14 +46,15 @@ function socketClEmit(status, msgContent) {
 }
 
 
-exports.sendNotiAll = function (req, res) {
-    userm.find({}, function (err, users) {
-        if (err) {
-            console.warn(err);
-            return;
-        }
-        return res.json(users);
-    })
+
+exports.notityAll = function (req, res) {
+    console.log('sendNotiAll'); 
+
+    Notify.webnotity({
+        title: 'Test msg',
+        body: 'test content'
+    });
+    return res.json({});
 };
 
 exports.user_details = function (req, res) {

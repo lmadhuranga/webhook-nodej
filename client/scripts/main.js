@@ -1,9 +1,21 @@
 'use strict';
 
-const applicationServerPublicKey = 'BHzFXvlrMzCqWiJID6i17wPG-HGxlo0JGahGeDNIwKfey7NuImsOlFKLLskqqj94aBOTdTM_zRRn2s2UmvXml78';
+const applicationServerPublicKey = 'BN61u00gtsjaxofW26DAE14h1kjQPRqTnsMJl75x3viJBRC-jxzlfj45MHGyQ2ffCUSWgyDkU0f6tHnI1jWlwPE';
 
 const pushButton = document.querySelector('.js-push-btn');
 
+function getRandomArbitrary(min=1, max=99999999) {
+  return Math.random() * (max - min) + min;
+}
+
+let userId;
+if(document.cookie!=""){
+  userId = document.cookie;
+}
+else {
+  userId = getRandomArbitrary();
+  document.cookie = userId;
+}
 let isSubscribed = false;
 let swRegistration = null;
 
@@ -41,14 +53,25 @@ function updateBtn() {
 
 function updateSubscriptionOnServer(subscription) {
   // TODO: Send subscription to application server
-
-  fetch("/subscribe", {
-    method: "POST",
-    body: JSON.stringify(subscription),
-    headers: {
-      "content-type": "application/json"
-    }
-  });
+  console.log('subscription',subscription);
+  
+  if(subscription){
+    const sendData = {
+      data: subscription,
+      cookie:userId
+    };
+    // console.log('sendData',sendData);
+    fetch("/users/subscribe", {
+      method: "POST",
+      body: JSON.stringify(sendData),
+      headers: {
+        "content-type": "application/json"
+      }
+    },function(res){
+      console.log('client res',res);
+    });
+  }
+  
 
   const subscriptionJson = document.querySelector('.js-subscription-json');
   const subscriptionDetails =

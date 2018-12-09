@@ -65,8 +65,8 @@ function showNotifications(logs) {
     logs.forEach((log, index) => { 
       chrome.notifications.create(`${index}`, {
         type: "basic",
-        title: log.from,
-        message: `${log.msg}`,
+        title: log.title,
+        message: `${log.body}`,
         iconUrl: '48.png',
         buttons: [
           {title: 'Youtube'},

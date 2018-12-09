@@ -2,10 +2,11 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var path = require('path');
 
 var log = require('./routes/log'); // Imports routes for the logs
+var user = require('./routes/user'); // Imports routes for the logs
 var app = express();
-
 
 // Set up mongoose connection
 var mongoose = require('mongoose');
@@ -20,8 +21,9 @@ app.use(express.static(path.join(__dirname, "client")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/logs', log);
+app.use('/users', user);
 
-var port = 1234;
+var port = 1112;
 
 const server = app.listen(port, () => {
     console.log('Server is up and running on port numner ' + port);

@@ -3,8 +3,8 @@ var Schema = mongoose.Schema;
 
 var logSchema = new Schema({
     created_at: {type: String},
-    from: {type: String },
-    msg: {type: String },
+    title: {type: String },
+    body: {type: String },
     isRead: {type: String },
 });
 
