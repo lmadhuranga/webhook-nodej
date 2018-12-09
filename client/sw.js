@@ -9,7 +9,7 @@ self.addEventListener('push', function(event) {
     icon: `${payload.icon}`,
     badge: `${payload.badge}`,
     data: {name:'mmad'},
-    silent: true
+    silent: false
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
