@@ -50,7 +50,7 @@ exports.heroku_create_log = function (req, res) {
     };
     const log = new logm(saveData);
     Notify.webnotity(msgContent); 
-
+    console.log('msgContent',msgContent);
     log.save(function (err, logs) {
         console.log('logs',logs);
         if (err) {
