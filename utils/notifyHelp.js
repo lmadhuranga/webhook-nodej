@@ -29,8 +29,7 @@ module.exports = {
                     icon : icon,
                     badge: badge,
                     body: msgContent.body 
-                });
-                console.log('payload',payload);
+                }); 
                 // Pass object into sendNotification
                 webpush
                 .sendNotification(subscriber.data, payload)

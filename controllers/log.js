@@ -39,7 +39,6 @@ function socketClEmit(status, msgContent) {
 exports.heroku_create_log = function (req, res) {
     const host = req.query.name;
     const rowData = req.body; 
-    console.log('rowData',rowData);
     const title = `${host}:${rowData.data.app.name} > ${rowData.data.name} > ${rowData.data.state}`
     let msgContent = `Action : \n ${rowData.action.toUpperCase()} /n @ ${getDate()}`
     const saveData = {
@@ -49,10 +48,8 @@ exports.heroku_create_log = function (req, res) {
         isRead:false
     };
     const log = new logm(saveData);
-    Notify.webnotity(msgContent); 
-    console.log('msgContent',msgContent);
+    Notify.webnotity(saveData);  
     log.save(function (err, logs) {
-        console.log('logs',logs);
         if (err) {
             console.log(err);
         }
