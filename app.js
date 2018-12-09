@@ -12,6 +12,7 @@ var app = express();
 var mongoose = require('mongoose');
 var dev_db_url = 'mongodb://nodeuser:node123@ds227654.mlab.com:27654/webhooks-log';
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
+var port =  process.env.PORT || 1000;
 mongoose.connect(mongoDB,{ useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
@@ -23,7 +24,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/logs', log);
 app.use('/users', user);
 
-var port = 1112;
+
 
 const server = app.listen(port, () => {
     console.log('Server is up and running on port numner ' + port);
