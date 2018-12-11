@@ -17,7 +17,6 @@ exports.get_all = function (req, res) {
 exports.initRequest = function () {
     //db.collection.findOne({}).sort({ "_id":-1})
     logm.findOne({'isRead':false}, (err,logsData)=>{
-        // console.log('init_logs ',logsData);
         if (err){
             console.log(err);
             return;
@@ -37,41 +36,7 @@ function socketClEmit(status, msgContent) {
     // if(status && msgContent) {socketMVC.emit(status, msgContent );}
 }
 
-exports.heroku_create_log = (req, res) => {
-    const host = req.query.name;
-    const rowData = req.body; 
-    const title = `${host}:${rowData.data.app.name} > ${rowData.data.name} > ${rowData.data.state}`
-    let msgContent = `Action : \n ${rowData.action.toUpperCase()} /n @ ${getDate()}`
-    const saveData = {
-        created_at: getDate(),
-        title:title,
-        body:msgContent,
-        isRead:false
-    };
-    const log = new logm(saveData);
-    Notify.webnotity(saveData);  
-    log.save(function (err, logs) {
-        if (err) {
-            console.log(err);
-        }
-        res.json({'msg':'log Created successfully'});
-    })
-}
-
-
-
-function getParamsData(reqParams, hook) {
-    const saveData = {
-        createdAt: getDate(),
-    }
-    hook.params.forEach(uParam => {
-        saveData[uParam] = reqParams[uParam];
-    });
-    return saveData;
-}
-
-exports.log_create = async (req, res) => {
-    const reqParams = req.query;    
+async function createALog (reqParams, res) {
     try {
         const hook = await hookm.findOne({
             token: reqParams.token, 
@@ -98,10 +63,30 @@ exports.log_create = async (req, res) => {
         console.log('e',e);
         res.status(400).send();
     }
+}
+
+exports.heroku_create_log = async (req, res) => {
+    const reqParams = req.body;
+    createALog(reqParams, res);
+}
+
+function getParamsData(reqParams, hook) {
+    const saveData = {
+        createdAt: getDate(),
+    }
+    hook.params.forEach(uParam => {
+        saveData[uParam] = reqParams[uParam];
+    });
+    return saveData;
+}
+
+exports.log_create = (req, res) => {
+    const reqParams = req.query;    
+    createALog(reqParams, res);
 };
 
-exports.log_details = function (req, res) {
-    logm.findById(req.params.id, function (err, log) {
+exports.log_details = (req, res) => {
+    logm.findById(req.params.id, (err, log) => {
         if (err) return next(err);
         res.send(log);
     })
