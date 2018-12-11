@@ -13,9 +13,5 @@ router.get('/set', log_controller.log_create);
 
 router.post('/heroku', log_controller.heroku_create_log);
 
-router.put('/:id/update', log_controller.log_update);
-
-router.delete('/:id/delete', log_controller.log_delete);
-
 
 module.exports = router;
