@@ -11,7 +11,7 @@ router.get('/', log_controller.get_all);
 
 router.get('/set', log_controller.log_create);
 
-router.post('/heroku', log_controller.heroku_create_log);
+router.post('/set', log_controller.heroku_create_log);
 
 
 module.exports = router;

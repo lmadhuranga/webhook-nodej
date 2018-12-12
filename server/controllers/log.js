@@ -38,6 +38,7 @@ function socketClEmit(status, msgContent) {
 
 async function createALog (reqParams, res) {
     try {
+        // Find the hook and user detail
         const hook = await hookm.findOne({
             token: reqParams.token, 
             active:true 
@@ -45,6 +46,7 @@ async function createALog (reqParams, res) {
         if (!hook) {
             return res.status(404).send();
         }
+        console.log('hook :', hook);
         const jsonHook = JSON.parse(JSON.stringify(hook));
         const selectedData = await getParamsData(reqParams, jsonHook);
         const saveData = { 
@@ -55,9 +57,9 @@ async function createALog (reqParams, res) {
         }
         
         const log = new logm(saveData);
-        
-        const response = await log.save()
-        
+        // saved the log in mongo
+        const response = await log.save();
+        // send the notification
         return res.json({ msg:'Sucess fully saved', res: response });
     } catch (e) {
         console.log('e',e);
