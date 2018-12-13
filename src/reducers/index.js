@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 import postReducer from './postReducer';
+import hookReducer from './hookReducer';
 
 export default combineReducers({
-    posts: postReducer
+    posts: postReducer,
+    hooks: hookReducer
 }) 
 

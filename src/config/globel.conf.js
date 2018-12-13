@@ -6,6 +6,8 @@ export const appConfig  = {
     }
   },
   app: {
-    name : 'Todo Collector'
-  }
+    name : 'Todo Collector',
+    url : 'http://localhost:3001'
+  },
+  
 };

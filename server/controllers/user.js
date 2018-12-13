@@ -3,6 +3,48 @@ var socketMVC = require('socket.mvc');
 var moment = require('moment-timezone');
 const { Notify } = require('../utils')
 
+
+
+exports.register =  async (req, res) => { 
+    try {
+        const user = new userm(req.body);
+        // saved the user in mongo
+        const response = await user.save();
+        console.log('response',response);
+        // send the notification
+        return res.json(response);
+    } catch (e) {
+        res.status(400).json({error:e});
+    }
+}
+ 
+exports.get = async (req, res) => { 
+    try {
+        const user = await userm.findOne({_id : req.params.id});
+        if(!user) {
+            return res.status(404).send();
+        }
+        return res.json(user);
+    } catch (e) {
+        return res.status(400).send();
+    }
+}
+
+
+exports.update = async function (req, res) {
+    try {
+        const response = await userm.findByIdAndUpdate(req.params.id, {$set: req.body}); 
+    
+        console.log('response',response);
+        // send the notification
+        return res.json(response);
+    } catch (e) {
+        res.status(400).json({error:e});
+    }
+};
+
+
+
 //Simple version, without validation or sanitation
 exports.userSubscribe =  function (req, res) {
  
@@ -62,13 +104,6 @@ exports.user_details = function (req, res) {
         if (err) return next(err);
         res.send(user);
     })
-};
-
-exports.user_update = function (req, res) {
-    userm.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, user) {
-        if (err) return next(err);
-        res.send('user udpated.');
-    });
 };
 
 exports.user_delete = function (req, res) {

@@ -14,14 +14,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
     "express": "^4.16.3",
     "moment-timezone": "^0.5.23",
     "mongoose": "^5.0.11",
-    "socket.io": "^2.2.0",
-    "socket.io-client": "^2.2.0",
-    "socket.mvc": "^0.2.0",
-    "web-push": "^3.3.3",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",
@@ -29,7 +28,10 @@
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "dotenv": "^6.1.0"
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "socket.mvc": "^0.2.0",
+    "web-push": "^3.3.3"
   },
   "eslintConfig": {
     "extends": "react-app"

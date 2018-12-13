@@ -3,11 +3,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
+var cors = require('cors');
 
 var log = require('./routes/log'); // Imports routes for the logs
 var user = require('./routes/user'); // Imports routes for the logs
+var hook = require('./routes/hook'); // Imports routes for the logs
 var app = express();
-
+app.use(cors());
 // Set up mongoose connection
 var mongoose = require('mongoose');
 var dev_db_url = 'mongodb://nodeuser:node123@ds227654.mlab.com:27654/webhooks-log';
@@ -23,6 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/logs', log);
 app.use('/users', user);
+app.use('/hooks', hook);
 
 
 

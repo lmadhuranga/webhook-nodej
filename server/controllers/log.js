@@ -39,14 +39,11 @@ function socketClEmit(status, msgContent) {
 async function createALog (reqParams, res) {
     try {
         // Find the hook and user detail
-        const hook = await hookm.findOne({
-            token: reqParams.token, 
-            active:true 
-        });
+        const hook = await hookm.findOne({ token: reqParams.token, active:true });
         if (!hook) {
             return res.status(404).send();
         }
-        console.log('hook :', hook);
+        // console.log('hook :', hook.token);
         const jsonHook = JSON.parse(JSON.stringify(hook));
         const selectedData = await getParamsData(reqParams, jsonHook);
         const saveData = { 
