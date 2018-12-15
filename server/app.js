@@ -1,14 +1,17 @@
 // app.js
 
 var express = require('express');
+var passport = require('passport');
 var bodyParser = require('body-parser');
 var path = require('path');
 var cors = require('cors');
+var app = express();
 
 var log = require('./routes/log'); // Imports routes for the logs
 var user = require('./routes/user'); // Imports routes for the logs
 var hook = require('./routes/hook'); // Imports routes for the logs
-var app = express();
+require('./routes/auth')(app); // Imports routes for the logs
+
 app.use(cors());
 // Set up mongoose connection
 var mongoose = require('mongoose');
@@ -27,8 +30,6 @@ app.use('/logs', log);
 app.use('/users', user);
 app.use('/hooks', hook);
 
-
-
 const server = app.listen(port, () => {
     console.log('Server is up and running on port numner ' + port);
 });
@@ -42,3 +43,10 @@ io.sockets.on('connection', function (socket) {
         filePath: ['./routes/socket.js']
     });
 });
+
+
+require('./services/passport');
+app.use(require('serve-static')(__dirname + '/../../public'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));

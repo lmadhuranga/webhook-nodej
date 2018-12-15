@@ -9,3 +9,6 @@ export const ERROR_GENERATED = 'ERROR_GENERATED';
 export const FETCH_HOOKS = 'FETCH_HOOKS';
 export const VIEW_HOOK = 'VIEW_HOOK';
 export const UPDATE_HOOK = 'UPDATE_HOOK';
+
+
+export const FETCH_LOGS = 'FETCH_LOGS';

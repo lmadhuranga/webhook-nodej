@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import NewPostPage from './Pages/NewUserPage';
+import GoogleAuth from './Pages/GoogleAuth';
 import HookView from './Pages/HookView'; 
 import UserView from './Pages/UserView'; 
 import Navgation from './Pages/Navgation';
@@ -20,7 +21,7 @@ class App extends Component {
             <Navgation/>
             <Switch>  
               <Route path='/view/:id' component={UserView} />
-              <Route path='/new' component={NewPostPage} />
+              <Route path='/new' component={GoogleAuth} />
               <Route path='/hook/:id' component={HookView} />
               {/* <Route path='/edit/:id' component={EditPostPage} /> */}
               <Route  component={Error} />

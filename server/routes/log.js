@@ -2,19 +2,19 @@ var express = require('express');
 var router = express.Router();
 
 // Require the controllers WHICH WE DID NOT CREATE YET!!
-var log_controller = require('../controllers/log');
+var logController = require('../controllers/log');
 
 
 // a simple test url to check that all of our files are communicating correctly.
-router.get('/', log_controller.get_all);
+router.get('/token/:token', logController.getByToken);
 
 
-router.get('/set', log_controller.log_create);
+router.get('/set', logController.log_create);
 
-router.post('/set', log_controller.heroku_create_log);
+router.post('/set', logController.heroku_create_log);
 
 
-// console.log('log_controller',log_controller);
+// console.log('logController',logController);
 
 
 module.exports = router;

@@ -15,9 +15,9 @@ export const fetchPosts = () => dispatch => {
 export const updateUser = (formData, userId) => { 
     return async dispatch => {       
         try {
-            const user = await axios.put(`${url}/users/${userId}`, formData);
-            dispatch({ type:UPDATE_POST, payload: user });
-            return user;
+            const { data } = await axios.put(`${url}/users/${userId}`, formData);
+            dispatch({ type:UPDATE_POST, payload: data });
+            return data;
         } catch (error) {
             // dispatch({ type: ERROR_GENERATED, error });
             return {error:error};
@@ -27,9 +27,9 @@ export const updateUser = (formData, userId) => {
 export const registerUser = (formData) => { 
     return async dispatch => {       
         try {
-            const user = await axios.post(`${url}/users`, formData);
-            dispatch({ type:NEW_POST, payload: user });
-            return user;
+            const { data } = await axios.post(`${url}/users`, formData);
+            dispatch({ type:NEW_POST, payload: data });
+            return data;
         } catch (error) {
             // dispatch({ type: ERROR_GENERATED, error });
             return {error:error};

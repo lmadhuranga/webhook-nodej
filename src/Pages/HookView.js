@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import { fetchHook, updateHook } from '../actions/hookActions';
+import LogsListCmp from '../components/LogsListCmp';
+
 
 
 class HookView extends Component {
@@ -48,7 +50,7 @@ class HookView extends Component {
   async handleSaveData(e) {
     e.preventDefault(); 
     const { hookId, hook } = this.state;
-    console.log('hook',hook); 
+    // console.log('hook',hook); 
     try {
       const updatedUser = await this.props.updateHook(hook, hookId);
       if(updatedUser.error) {
@@ -62,8 +64,12 @@ class HookView extends Component {
 
   render() {
     let content;
-    const { hook } = this.state; 
+    let newParams;
+    const { hook } = this.state;
     if(hook.hasOwnProperty('displayFormat')){
+      newParams = hook.params.map((param) => {
+        return `%${param}`;
+      })
       content = <div>
             <li>displayFormat.title : <input defaultValue={hook.displayFormat.title} onChange={this.upDateDisplay.bind(this, 'title')} /></li>
             <li>displayFormat.body : <input defaultValue={hook.displayFormat.body} onChange={this.upDateDisplay.bind(this, 'body')} /></li>
@@ -81,8 +87,8 @@ class HookView extends Component {
           <li>token : <input ref="token" onChange={this.updateStateByInput.bind(this, "token")} defaultValue={hook.token} /></li>
           <li>active : 
             <select  onChange={this.updateStateByInput.bind(this, "active")} ref="active" defaultChecked={hook.active}>
-              <option value="active">Active</option>
-              <option value="deactive">Deactive</option>
+              <option value="true">Active</option>
+              <option value="false">Deactive</option>
             </select>
           </li>
           { content }
@@ -90,6 +96,7 @@ class HookView extends Component {
           <button type="submit">Save</button>
         </ul>
         </form>
+        { hook.displayFormat?<LogsListCmp displayFormat={hook.displayFormat} token={hook.token} params={newParams}></LogsListCmp> : undefined}
       </div>
     );
     

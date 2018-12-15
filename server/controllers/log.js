@@ -15,7 +15,6 @@ exports.get_all = function (req, res) {
 
 //Simple version, without validation or sanitation
 exports.initRequest = function () {
-    //db.collection.findOne({}).sort({ "_id":-1})
     logm.findOne({'isRead':false}, (err,logsData)=>{
         if (err){
             console.log(err);
@@ -38,10 +37,11 @@ function socketClEmit(status, msgContent) {
 
 async function createALog (reqParams, res) {
     try {
+        const query = { token: reqParams.token, active:true };
         // Find the hook and user detail
-        const hook = await hookm.findOne({ token: reqParams.token, active:true });
+        const hook = await hookm.findOne(query);
         if (!hook) {
-            return res.status(404).send();
+            return res.status(404).send("Not Found Token");
         }
         // console.log('hook :', hook.token);
         const jsonHook = JSON.parse(JSON.stringify(hook));
@@ -60,7 +60,7 @@ async function createALog (reqParams, res) {
         return res.json({ msg:'Sucess fully saved', res: response });
     } catch (e) {
         console.log('e',e);
-        res.status(400).send();
+        res.status(400).send(e);
     }
 }
 
@@ -90,3 +90,17 @@ exports.log_details = (req, res) => {
         res.send(log);
     })
 };
+
+exports.getByToken = async (req, res) => { 
+    try {
+        const query = {token : req.params.token};
+        const response = await logm.find(query);
+        if(!response) {
+            return res.status(404).send();
+        }
+        return res.json(response);
+    } catch (e) {
+        console.log('e',e);
+        return res.status(400).send();
+    }
+}

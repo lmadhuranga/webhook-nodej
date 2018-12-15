@@ -3,21 +3,20 @@ var Schema = mongoose.Schema;
 
 var logSchema = new Schema({
     cookie: {type: String},
+    googleId: {
+        type: String
+    },
     fullName: { 
-        type: String,
-        required:true 
+        type: String
     },
     userName: { 
-        type: String,
-        required:true 
+        type: String
     },
     email: { 
-        type: String,
-        required:true 
+        type: String
     },
     password: { 
-        type: String,
-        required:true 
+        type: String
     },
     devices: [
         {
