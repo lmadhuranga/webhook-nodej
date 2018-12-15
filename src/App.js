@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 
-import NewPostPage from './Pages/NewUserPage';
+// import NewPostPage from './Pages/NewUserPage';
+import HomePage from './Pages/HomePage';
 import GoogleAuth from './Pages/GoogleAuth';
 import HookView from './Pages/HookView'; 
 import UserView from './Pages/UserView'; 
@@ -21,6 +22,7 @@ class App extends Component {
             <Navgation/>
             <Switch>  
               <Route path='/view/:id' component={UserView} />
+              <Route path='/' component={HomePage} />
               <Route path='/new' component={GoogleAuth} />
               <Route path='/hook/:id' component={HookView} />
               {/* <Route path='/edit/:id' component={EditPostPage} /> */}

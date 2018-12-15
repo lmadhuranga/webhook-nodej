@@ -11,6 +11,7 @@ router.post('/', userCtrl.register);
 router.get('/:id', userCtrl.get);
 router.put('/:id', userCtrl.update);
 router.get('/all', userCtrl.notityAll);
+router.post('/subscribe', userCtrl.userSubscribe);
 
 
 module.exports = router;
