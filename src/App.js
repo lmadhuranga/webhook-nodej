@@ -28,6 +28,7 @@ class App extends Component {
               {/* <Route path='/edit/:id' component={EditPostPage} /> */}
               <Route  component={Error} />
             </Switch>
+            <a href="/auth/google">Google sign in</a>
           </div>
         </BrowserRouter>
       </Provider>

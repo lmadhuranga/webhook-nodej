@@ -46,8 +46,7 @@ exports.update = async function (req, res) {
 
 
 //Simple version, without validation or sanitation
-exports.userSubscribe =  function (req, res) {
- 
+exports.userSubscribe =  function (req, res) { 
     const rowData = req.body;
     // return console.log('rowData',rowData); 
 
