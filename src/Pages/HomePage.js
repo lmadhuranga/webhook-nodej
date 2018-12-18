@@ -3,7 +3,6 @@ import WebPush from '../components/WebPush';
 import { connect } from 'react-redux';
 import {payloadFromSubscription} from '../Utility/Utility';
 import { updateSubscribe } from '../actions/webPushActions';
-import { fetchUser } from '../actions/userActions';
 
 const applicationServerPublicKey = "BDpN09_DLr0JD5LjfrGfH5oez7QJ20dZNawPc3JEnl7Hl4FSid-wszGrCQJz7e2i2u3B59xlHP4hGjK1wHRQuaQ";
 class HomePage extends Component {
@@ -28,23 +27,18 @@ class HomePage extends Component {
   }
 
   onUpdateSubscriptionOnServer(subscription) {
-    console.log("onUpdateSubscriptionOnServer:", subscription)
+    // console.log("onUpdateSubscriptionOnServer:", subscription)
     var payload = payloadFromSubscription(subscription)
-    console.log("payload:", JSON.stringify(payload))
+    // console.log("payload:", JSON.stringify(payload))
     this.setState({subscription: subscription})
     updateSubscribe(JSON.stringify(payload));
   }
 
   onSubscriptionFailed(error) {
-    console.log("onSubscriptionFailed:", error)
-  }
-
-  componentDidMount() {
-    this.props.fetchUser();
+    // console.log("onSubscriptionFailed:", error)
   }
 
   render() {
-    console.log('this.props',this.props);
     return <div>
       <h1>Home page</h1>
       <WebPush
@@ -65,4 +59,4 @@ const mapStateToprops = state => ({
   post: state.posts.item,
   auth: state.auth
 })
-export default connect( mapStateToprops, { updateSubscribe, fetchUser })(HomePage);
+export default connect( mapStateToprops, { updateSubscribe })(HomePage);

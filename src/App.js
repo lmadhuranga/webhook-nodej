@@ -11,12 +11,15 @@ import UserView from './Pages/UserView';
 import Navgation from './Pages/Navgation';
 import Error from './Pages/Error';
 
+import LoginButtonCmp from './components/LoginButtonCmp';
+
 class App extends Component {
  
   render() {
     
     return (
       <Provider store={store}>
+       <div>
         <BrowserRouter>
           <div>
             <Navgation/>
@@ -28,9 +31,10 @@ class App extends Component {
               {/* <Route path='/edit/:id' component={EditPostPage} /> */}
               <Route  component={Error} />
             </Switch>
-            <a href="/auth/google">Google sign in</a>
           </div>
         </BrowserRouter>
+        <LoginButtonCmp></LoginButtonCmp>
+        </div>
       </Provider>
     );
   }

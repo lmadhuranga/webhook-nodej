@@ -3,6 +3,7 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 const userm = require('../models/user')
 
+
 // Todo:: Move to keys config file
 passport.use(new GoogleStrategy({
     clientID: '332189319801-chf7liagaflk48fr2ob0q7082teobr5g.apps.googleusercontent.com',

@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-var cors = require('cors');
+// var cors = require('cors');
 var app = express();
 // app.use(require('serve-static')(__dirname + '/../../public'));
 app.use(require('cookie-parser')());
@@ -20,11 +20,11 @@ require('./routes/auth')(app); // Imports routes for the logs
 
 app.get('/', function(req, res) {
     console.log('req.isAuthenticated',req.isAuthenticated());
-    // console.log('req.user',req.user);
+    console.log('req.user',req.user);
     res.send({msg:'hi', user:req.user});
 });
 
-app.use(cors());
+// app.use(cors());
 // Set up mongoose connection
 var mongoose = require('mongoose');
 var dev_db_url = 'mongodb://nodeuser:node123@ds227654.mlab.com:27654/webhooks-log';

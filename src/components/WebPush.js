@@ -20,8 +20,8 @@ class WebPush extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.subscriveUserEnabled  != nextProps.subscriveUserEnabled && nextProps.subscriveUserEnabled) {
-      this.onSubscribeUser()
+    if (this.props.subscriveUserEnabled  !== nextProps.subscriveUserEnabled && nextProps.subscriveUserEnabled) {
+      this.onSubscribeUser();
     }
   }
 
@@ -64,7 +64,7 @@ class WebPush extends Component {
   onRegisterServiceWorker() {
     navigator.serviceWorker.register('sw.js', {scope:'shit1'})
     .then(function(swReg) {
-      console.log('Service Worker is registered', swReg);
+      // console.log('Service Worker is registered', swReg);
 
       swRegistration = swReg;
     })

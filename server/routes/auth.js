@@ -8,15 +8,16 @@ module.exports = (app) => {
     app.use(passport.session());
     
     app.get('/auth/me', function(req, res){
-        console.log('req.user',req.user);
-        res.send('req.user check console');
+        console.log('req.user -->',req.user);
+        res.json(req.user);
     });
 
     app.get('/auth/google', passport.authenticate('google', { scope: ['profile','email'] }));
 
     app.get('/auth/logout',function(req, res) {
         req.logout();
-        res.send(req.user);
+        console.log('log out called');
+        res.redirect('/');
     })
     
     app.get('/auth/google/callback', 
