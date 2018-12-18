@@ -7,7 +7,8 @@ export const appConfig  = {
   },
   app: {
     name : 'Todo Collector',
-    url : 'http://localhost:3001'
+    url : 'http://localhost:3001',
+    api : 'http://localhost:3001/api'
   },
   
 };

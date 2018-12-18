@@ -7,7 +7,8 @@ var userCtrl = require('../controllers/user');
 
 // a simple test url to check that all of our files are communicating correctly.
 
-router.post('/', userCtrl.register);55
+router.post('/', userCtrl.register);
+router.get('/me', userCtrl.me);
 router.get('/:id', userCtrl.get);
 router.put('/:id', userCtrl.update);
 router.get('/all', userCtrl.notityAll);

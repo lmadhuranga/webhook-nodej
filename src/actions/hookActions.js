@@ -1,7 +1,7 @@
 import { FETCH_HOOKS, VIEW_HOOK, UPDATE_HOOK }  from './types';
 import axios from 'axios'
 import { appConfig } from '../config/globel.conf'
-const url = `${ appConfig.app.url }`;
+const url = `${ appConfig.app.api }`;
 
 export const fetchHooks = (userId) => {
     return async dispatch => {

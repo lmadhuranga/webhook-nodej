@@ -2,7 +2,7 @@ import { FETCH_POSTS, NEW_POST, VIEW_POST, UPDATE_POST }  from './types';
 // import { ERROR_GENERATED }  from './types';
 import axios from 'axios'
 import { appConfig } from '../config/globel.conf'
-const url = appConfig.app.url;
+const url = appConfig.app.api;
 
 export const fetchPosts = () => dispatch => {
     fetch('https://jsonplaceholder.typicode.com/posts')

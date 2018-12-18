@@ -17,7 +17,12 @@ exports.register =  async (req, res) => {
         res.status(400).json({error:e});
     }
 }
- 
+
+exports.me = function (req, res) { 
+    console.log('me called', req.user);
+    return res.json(req.user);
+}
+
 exports.get = async (req, res) => { 
     try {
         const user = await userm.findOne({_id : req.params.id});

@@ -12,3 +12,4 @@ export const UPDATE_HOOK = 'UPDATE_HOOK';
 
 
 export const FETCH_LOGS = 'FETCH_LOGS';
+export const FETCH_USER = 'FETCH_USER';

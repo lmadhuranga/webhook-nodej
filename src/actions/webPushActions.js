@@ -1,8 +1,8 @@
-import { FETCH_LOGS }  from './types';
-import { ERROR_GENERATED }  from './types';
+// import { FETCH_LOGS }  from './types';
+// import { ERROR_GENERATED }  from './types';
 import axios from 'axios'
 import { appConfig } from '../config/globel.conf'
-const url = appConfig.app.url;
+const url = appConfig.app.api;
 
 export const updateSubscribe = async (formData) => {
     console.log('updateSubscribe', formData);     
