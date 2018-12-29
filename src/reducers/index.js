@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
-import postReducer from './postReducer';
+import userReducer from './userReducer';
 import hookReducer from './hookReducer';
 import logReducer from './logReducer';
 import authReducer from './authReducer';
 
 export default combineReducers({
-    posts: postReducer,
     hooks: hookReducer,
     logs: logReducer,
+    users: userReducer,
     auth: authReducer
 }) 
 

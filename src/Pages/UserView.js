@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchUser, updateUser } from '../actions/postActions';
+import { fetchUser, updateUser } from '../actions/userActions';
 import HooksList from '../components/HooksList';
 
 
@@ -19,12 +19,12 @@ class UserView extends Component {
     this.setState({userId:userId});
   }
   componentDidMount(props){
-    let userId = this.props.match.params.id;
+    const userId = this.props.match.params.id;
     this.props.fetchUser(userId);
   }
 
   componentWillReceiveProps(props){
-    this.setState({user:props.post}, ()=>{
+    this.setState({user:props.user}, ()=>{
       // console.log('set Sate');
     });
   }
@@ -99,6 +99,6 @@ class UserView extends Component {
 //   title: PropTypes.string.isRequired,
 // };
 const mapStateToprops = state => ({
-  post: state.posts.item
+  user: state.users.single
 })
 export default connect( mapStateToprops, {fetchUser, updateUser })(UserView);

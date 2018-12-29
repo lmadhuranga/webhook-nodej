@@ -12,8 +12,7 @@ class HooksList extends Component {
   }
   
   componentDidMount() {
-    // console.log('this.props',this.props);
-    // let userId = this.props.match.params.id;
+    console.log('this.props',this.props);    
     this.props.fetchHooks('5c1115168a9b721b003e5b0f');
   }
   
@@ -39,6 +38,7 @@ class HooksList extends Component {
 //   title: PropTypes.string.isRequired,
 // };
 const mapStateToprops = state => ({
-  hooks: state.hooks.items
+  hooks: state.hooks.items,
+  auth:state.auth
 })
 export default connect( mapStateToprops, { fetchHooks })(HooksList);

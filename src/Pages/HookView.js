@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { fetchHook, updateHook } from '../actions/hookActions';
 import LogsListCmp from '../components/LogsListCmp';
 
-
-
 class HookView extends Component {
 
   constructor(){

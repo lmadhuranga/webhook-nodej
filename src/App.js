@@ -8,10 +8,9 @@ import HomePage from './Pages/HomePage';
 import GoogleAuth from './Pages/GoogleAuth';
 import HookView from './Pages/HookView'; 
 import UserView from './Pages/UserView'; 
-import Navgation from './Pages/Navgation';
-import Error from './Pages/Error';
+import Navgation from './components/Navgation';
+import Error from './Pages/Error'; 
 
-import LoginButtonCmp from './components/LoginButtonCmp';
 
 class App extends Component {
  
@@ -24,16 +23,14 @@ class App extends Component {
           <div>
             <Navgation/>
             <Switch>  
-              <Route path='/view/:id' component={UserView} />
-              <Route path='/' component={HomePage} />
-              <Route path='/new' component={GoogleAuth} />
-              <Route path='/hook/:id' component={HookView} />
-              {/* <Route path='/edit/:id' component={EditPostPage} /> */}
+              <Route exact path='/' component={HomePage} />
+              <Route exact path='/user/view/:id' component={UserView} />
+              <Route exact path='/new' component={GoogleAuth} />
+              <Route exact path='/hook/:id' component={HookView} />
               <Route  component={Error} />
             </Switch>
           </div>
         </BrowserRouter>
-        <LoginButtonCmp></LoginButtonCmp>
         </div>
       </Provider>
     );
